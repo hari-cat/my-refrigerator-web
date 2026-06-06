@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getRefrigeratorProducts } from "../api/refrigeratorProductApi";
+import { getRefrigerator } from "../api/refrigeratorProductApi";
 
-export const useGetRefrigeratorProducts= () => {
+export const useGetRefrigerator = (param: number) => {
   return useQuery({
     queryKey: ["getRefrigeratorProducts"],
-    queryFn: getRefrigeratorProducts,
+    queryFn: () => getRefrigerator(param),
   });
 };
