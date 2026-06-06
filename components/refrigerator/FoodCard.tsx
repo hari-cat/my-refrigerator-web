@@ -20,36 +20,43 @@ export function FoodCard({
       <img
         src={imageUrl}
         alt={name}
-        className="h-28 w-45 rounded-xl object-cover"
+        className="h-28 w-50 rounded-xl object-cover"
       />
 
       <div className="flex flex-1 flex-col">
-        <span className="w-fit rounded bg-orange-400 px-2 py-1 text-s text-white">
+        <span className="w-fit rounded bg-orange-400 px-2 py-1 text-xs text-white">
           {category}
         </span>
 
         <div className="mt-2 flex items-center gap-2">
-          <h3 className="text-2xl font-bold">{name}</h3>
+          <h3 className="text-xl font-bold">{name}</h3>
 
           <span className="rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold text-orange-800">
             {dday}
           </span>
         </div>
 
-        <p className="mt-1 text-lg text-gray-700">{purchaseDate} 구매</p>
+        <p className="mt-1 text-sm text-gray-700">{purchaseDate} 구매</p>
 
         <div className="mt-3 flex items-center gap-3">
-          <button className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-400 text-white">
+          <button className="flex h-5 w-5 items-center justify-center rounded-full bg-orange-400 text-white">
             -
           </button>
 
-          <span className="text-xl font-medium">{quantity}</span>
+          <span className="text-s font-medium">{quantity}</span>
 
-          <button className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-400 text-white">
+          <button className="flex h-5 w-5 items-center justify-center rounded-full bg-orange-400 text-white">
             +
           </button>
 
-          <button className="text-gray-300">🗑️</button>
+          <button className="text-gray-300">
+            <img
+              src="/images/waste_basket.png"
+              width={14}
+              height={14}
+              alt="waste_basket"
+            />
+          </button>
         </div>
       </div>
     </div>
