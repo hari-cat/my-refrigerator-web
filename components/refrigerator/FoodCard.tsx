@@ -31,7 +31,7 @@ export function FoodCard({
         <div className="mt-2 flex items-center gap-2">
           <h3 className="text-xl font-bold">{name}</h3>
 
-          <span className="rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold text-orange-800">
+          <span className="rounded-full bg-orange-100 px-2 py-0.5 text-sm font-semibold text-orange-800">
             {dday}
           </span>
         </div>
