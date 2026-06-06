@@ -1,21 +1,26 @@
+import { cn } from "@/lib/utils";
+
 export function FilterBar() {
+  const filterItems = ["전체", "신선식품", "소비기한", "보관위치"];
+  // font-semibold
   return (
     <div className="flex gap-3 overflow-x-auto px-4 py-4">
-      <button className="whitespace-nowrap rounded-full bg-gray-200 px-5 py-2 font-semibold">
-        전체
-      </button>
-
-      <button className="whitespace-nowrap rounded-full border px-5 py-2">
-        신선식품 ▼
-      </button>
-
-      <button className="whitespace-nowrap rounded-full border px-5 py-2">
-        소비기한 ▼
-      </button>
-
-      <button className="whitespace-nowrap rounded-full border px-5 py-2">
-        보관위치 ▼
-      </button>
+      {filterItems.map((item, idx) => {
+        return (
+          <>
+            <button
+              key={`filter-items-${idx}`}
+              className={cn(
+                "flex items-center gap-1 whitespace-nowrap rounded-full border px-3 py-2 text-xs font-bold",
+                idx === 0 && "bg-gray-200",
+              )}
+            >
+              {item}
+              <img src="/images/down_arrow.png" alt="" width={8} height={8} />
+            </button>
+          </>
+        );
+      })}
     </div>
   );
 }
