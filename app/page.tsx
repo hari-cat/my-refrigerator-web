@@ -1,38 +1,25 @@
-import { FilterBar } from "@/components/refrigerator/FilterBar";
-import { FoodCard } from "@/components/refrigerator/FoodCard";
-import { HeroSection } from "@/components/refrigerator/HeroSection";
-import { StorageTabs } from "@/components/refrigerator/StorageTabs";
+import Link from "next/link";
+import { Logo } from "@/components/refrigerator/logo";
+import { GoogleButton } from "@/components/refrigerator/google-button";
 
-export default function HomePage() {
+export default function LoginPage() {
   return (
-    <main className="min-h-screen bg-[#f6f6f6]">
-      <HeroSection />
-      <StorageTabs />
-      <FilterBar />
-      <section className="px-4">
-        <FoodCard
-          imageUrl="images/product/carrot.png"
-          category="야채칸"
-          name="당근"
-          dday="D-3"
-          purchaseDate="2026.01.03"
-          quantity={1}
-        />
-        <FoodCard
-          imageUrl="images/product/egg.png"
-          category="수납칸"
-          name="계란"
-          dday="D-20"
-          purchaseDate="2026.01.01"
-          quantity={1}
-        />
-      </section>
+    <main className="flex min-h-screen flex-col bg-background px-6">
+      <div className="flex flex-1 flex-col items-center justify-center gap-8">
+        <Logo markSize={56} />
 
-      <div className="p-4">
-        <button className="w-full rounded-xl border-2 border-orange-400 py-3 text-xl font-bold text-orange-400">
-          MY 식품 추가
-        </button>
+        <p className="text-lg font-medium text-muted-foreground">
+          더 신선하게, 더 알뜰하게
+        </p>
+
+        <Link href="/refrigerator" className="mt-8 w-full max-w-sm">
+          <GoogleButton />
+        </Link>
       </div>
+
+      <footer className="pb-10 text-center text-sm text-muted-foreground">
+        © 2026 우리집냉장고. All Rights Reserved.
+      </footer>
     </main>
   );
 }
