@@ -4,8 +4,8 @@ import { Logo } from "@/components/refrigerator/logo";
 import { GoogleButton } from "@/components/refrigerator/google-button";
 
 export default function LoginPage() {
-  const fetchData = () => {
-    window.location.href = "http://localhost:8080/oauth2/authorization/google";
+  const authLogin = () => {
+    window.location.href = `http://localhost:8080/oauth2/authorization/google`;
   };
 
   return (
@@ -16,7 +16,7 @@ export default function LoginPage() {
         <p className="text-lg font-medium text-muted-foreground">
           더 신선하게, 더 알뜰하게
         </p>
-        <GoogleButton onClick={fetchData} />
+        <GoogleButton onClick={authLogin} />
       </div>
 
       <footer className="pb-10 text-center text-sm text-muted-foreground">
