@@ -1,6 +1,9 @@
-export function GoogleButton() {
+export function GoogleButton({ onClick }: { onClick: () => void }) {
   return (
-    <span className="flex w-full items-center justify-center gap-3 rounded-full border border-border bg-card py-4 text-lg font-bold text-foreground shadow-sm transition-colors hover:bg-secondary">
+    <span
+      className="flex w-full items-center justify-center gap-3 rounded-full border border-border bg-card py-4 text-lg font-bold text-foreground shadow-sm transition-colors hover:bg-secondary"
+      onClick={onClick}
+    >
       <GoogleIcon className="size-6" />
       Continue with Google
     </span>

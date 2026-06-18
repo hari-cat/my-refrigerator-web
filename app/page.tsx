@@ -1,8 +1,13 @@
-import Link from "next/link";
+"use client";
+
 import { Logo } from "@/components/refrigerator/logo";
 import { GoogleButton } from "@/components/refrigerator/google-button";
 
 export default function LoginPage() {
+  const fetchData = () => {
+    window.location.href = "http://localhost:8080/oauth2/authorization/google";
+  };
+
   return (
     <main className="flex min-h-screen flex-col bg-background px-6">
       <div className="flex flex-1 flex-col items-center justify-center gap-8">
@@ -11,10 +16,7 @@ export default function LoginPage() {
         <p className="text-lg font-medium text-muted-foreground">
           더 신선하게, 더 알뜰하게
         </p>
-
-        <Link href="/refrigerator" className="mt-8 w-full max-w-sm">
-          <GoogleButton />
-        </Link>
+        <GoogleButton onClick={fetchData} />
       </div>
 
       <footer className="pb-10 text-center text-sm text-muted-foreground">

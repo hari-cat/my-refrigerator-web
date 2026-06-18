@@ -3,20 +3,19 @@ import { Logo } from "@/components/refrigerator/logo";
 import { FreshnessHeader } from "@/components/refrigerator/freshness-header";
 import { IngredientList } from "@/components/refrigerator/ingredient-list";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
   return (
     <main className="min-h-screen bg-background">
       <header className="flex items-center justify-between bg-card px-6 py-5">
         <Logo markSize={36} />
         <Link
-          href="/"
+          href="/refrigerator"
           aria-label="홈으로"
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           <HomeIcon className="size-7" />
         </Link>
       </header>
-
       <FreshnessHeader />
       <IngredientList />
     </main>

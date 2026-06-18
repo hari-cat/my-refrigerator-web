@@ -17,7 +17,7 @@ export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
     <article className="flex gap-4 rounded-3xl bg-card p-4 shadow-sm ring-1 ring-border">
       <div className="relative size-28 shrink-0 overflow-hidden rounded-2xl">
         <Image
-          src={ingredient.image || "/placeholder.svg"}
+          src={ingredient?.image || "/placeholder.svg"}
           alt={ingredient.name}
           fill
           sizes="112px"
