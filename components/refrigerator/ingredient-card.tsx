@@ -1,7 +1,8 @@
-import { Ingredient } from "@/lib/ingredients";
+"use client";
+import { RefrigeratorProduct } from "@/services/api/refrigeratorProductApi";
 import Image from "next/image";
 
-function Row({ label, value }: { label: string; value: string }) {
+function Row({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="flex items-center gap-3">
       <span className="inline-flex w-20 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-accent px-2 py-1 text-sm font-bold text-accent-foreground">
@@ -12,13 +13,13 @@ function Row({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
+export function IngredientCard({ product }: { product: RefrigeratorProduct }) {
   return (
     <article className="flex gap-4 rounded-3xl bg-card p-4 shadow-sm ring-1 ring-border">
       <div className="relative size-28 shrink-0 overflow-hidden rounded-2xl">
         <Image
-          src={ingredient?.image || "/placeholder.svg"}
-          alt={ingredient.name}
+          src={""}
+          alt={product.name}
           fill
           sizes="112px"
           className="object-cover"
@@ -27,13 +28,13 @@ export function IngredientCard({ ingredient }: { ingredient: Ingredient }) {
 
       <div className="flex flex-1 flex-col">
         <h3 className="text-xl font-extrabold text-foreground">
-          {ingredient.name}
+          {product.name}
         </h3>
         <div className="my-2 border-b border-border" />
         <div className="flex flex-col gap-2">
-          <Row label={ingredient.amountLabel} value={ingredient.amount} />
-          <Row label="원산지" value={ingredient.origin} />
-          <Row label="소비기한" value={ingredient.expiry} />
+          <Row label="수량" value={product.quantity} />
+          <Row label="원산지" value={product.origin} />
+          <Row label="소비기한" value={product.expiredAt} />
         </div>
       </div>
     </article>

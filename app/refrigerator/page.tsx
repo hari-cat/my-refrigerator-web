@@ -1,9 +1,20 @@
+"use client";
 import Link from "next/link";
 import { Logo } from "@/components/refrigerator/logo";
 import { FreshnessHeader } from "@/components/refrigerator/freshness-header";
 import { IngredientList } from "@/components/refrigerator/ingredient-list";
+import { useGetRefrigeratorProducts } from "@/services/query/useRefrigeratorProduct";
+import { RefreigeratorRequest } from "@/services/api/refrigeratorProductApi";
 
-export default async function DashboardPage() {
+export default function DashboardPage() {
+  const getRefrigeratorRequest: RefreigeratorRequest = {
+    page: 1,
+    size: 20,
+  };
+  const { data } = useGetRefrigeratorProducts(getRefrigeratorRequest);
+
+  const products = data?.content ?? [];
+
   return (
     <main className="min-h-screen bg-background">
       <header className="flex items-center justify-between bg-card px-6 py-5">
@@ -17,7 +28,7 @@ export default async function DashboardPage() {
         </Link>
       </header>
       <FreshnessHeader />
-      <IngredientList />
+      <IngredientList products={products} />
     </main>
   );
 }

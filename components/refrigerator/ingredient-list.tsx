@@ -4,14 +4,21 @@ import { useState } from "react";
 import { CATEGORIES, INGREDIENTS, type Category } from "@/lib/ingredients";
 import { IngredientCard } from "@/components/refrigerator/ingredient-card";
 import { cn } from "@/lib/utils";
+import { RefrigeratorProduct } from "@/services/api/refrigeratorProductApi";
 
-export function IngredientList() {
+export function IngredientList({
+  products,
+}: {
+  products: RefrigeratorProduct[];
+}) {
   const [active, setActive] = useState<Category>("전체");
 
   const filtered =
     active === "전체"
       ? INGREDIENTS
       : INGREDIENTS.filter((item) => item.category === active);
+
+  console.log(products);
 
   return (
     <div className="mx-auto w-full max-w-md px-5 pb-16">
@@ -38,9 +45,9 @@ export function IngredientList() {
       </div>
 
       <div className="flex flex-col gap-5">
-        {filtered.length > 0 ? (
-          filtered.map((ingredient) => (
-            <IngredientCard key={ingredient.id} ingredient={ingredient} />
+        {products.length > 0 ? (
+          products.map((product) => (
+            <IngredientCard key={product.id} product={product} />
           ))
         ) : (
           <p className="py-16 text-center text-muted-foreground">
