@@ -33,3 +33,18 @@ export const getRefrigeratorProducts = async (
 
   return response.data;
 };
+
+export interface CreateProductRequest {
+  productId: number;
+  quantity: number;
+  expiredAt: string;
+  origin: string;
+}
+
+export const createRefrigeratorProduct = async (
+  request: CreateProductRequest,
+) => {
+  const response = await api.post("/api/refrigerator-product", request);
+
+  return response.data;
+};
