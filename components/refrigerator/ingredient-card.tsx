@@ -1,6 +1,5 @@
 "use client";
 import { RefrigeratorProduct } from "@/services/api/refrigeratorProductApi";
-import Image from "next/image";
 
 function Row({ label, value }: { label: string; value: string | number }) {
   return (

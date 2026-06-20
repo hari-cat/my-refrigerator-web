@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CATEGORIES, type Category } from "@/lib/ingredients";
+import { CATEGORIES } from "@/lib/ingredients";
 import { IngredientCard } from "@/components/refrigerator/ingredient-card";
 import { cn } from "@/lib/utils";
 import { RefrigeratorProduct } from "@/services/api/refrigeratorProductApi";
