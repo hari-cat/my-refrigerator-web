@@ -5,8 +5,12 @@ import { FreshnessHeader } from "@/components/refrigerator/freshness-header";
 import { IngredientList } from "@/components/refrigerator/ingredient-list";
 import { useGetRefrigeratorProducts } from "@/services/query/useRefrigeratorProduct";
 import { RefreigeratorRequest } from "@/services/api/refrigeratorProductApi";
+import FullScreenModal from "@/components/common/fullScreenModal";
+import { useState } from "react";
+import Dropdown from "@/components/common/dropdown";
 
 export default function DashboardPage() {
+  const [open, setOpen] = useState(false);
   const getRefrigeratorRequest: RefreigeratorRequest = {
     page: 1,
     size: 20,
@@ -28,7 +32,73 @@ export default function DashboardPage() {
         </Link>
       </header>
       <FreshnessHeader />
+      <button
+        key={"add-refrigerator-product"}
+        type="button"
+        onClick={() => setOpen(true)}
+        className={
+          "rounded-full px-6 py-2.5 text-base font-bold shadow-sm transition-colors bg-brand text-brand-foreground"
+        }
+        style={{ marginLeft: "250px" }}
+      >
+        {"냉장고 추가"}
+      </button>
       <IngredientList products={products} />
+      <FullScreenModal
+        open={open}
+        title="냉장고 물풀 추가"
+        onClose={() => setOpen(false)}
+      >
+        <ul>
+          <li>
+            <span></span>
+            <span>
+              <Dropdown
+                value={""}
+                onChange={() => {}}
+                options={[
+                  {
+                    value: "MEAT",
+                    label: "육류",
+                  },
+                  {
+                    value: "VEGETABLE",
+                    label: "채소",
+                  },
+                  {
+                    value: "DRINK",
+                    label: "음료",
+                  },
+                  {
+                    value: "DAIRY",
+                    label: "음료",
+                  },
+                  {
+                    value: "FROZEN",
+                    label: "냉동",
+                  },
+                ]}
+              />
+            </span>
+          </li>
+          <li>
+            <span></span>
+            <span></span>
+          </li>
+          <li>
+            <span></span>
+            <span></span>
+          </li>
+          <li>
+            <span></span>
+            <span></span>
+          </li>
+          <li>
+            <span></span>
+            <span></span>
+          </li>
+        </ul>
+      </FullScreenModal>
     </main>
   );
 }

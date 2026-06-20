@@ -13,6 +13,7 @@ export interface RefrigeratorProduct {
   quantity: number;
   expiredAt: string;
   origin: string;
+  category: string;
 }
 export interface RefreigeratorResponse {
   content: RefrigeratorProduct[];
