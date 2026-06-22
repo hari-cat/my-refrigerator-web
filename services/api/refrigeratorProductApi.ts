@@ -48,3 +48,9 @@ export const createRefrigeratorProduct = async (
 
   return response.data;
 };
+
+export const deleteRefrigeratorProduct = async (productId: number) => {
+  const response = await api.delete(`/api/refrigerator-product/${productId}`);
+
+  return response.data;
+};

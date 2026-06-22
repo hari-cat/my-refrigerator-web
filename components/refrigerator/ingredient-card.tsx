@@ -1,5 +1,6 @@
 "use client";
 import { RefrigeratorProduct } from "@/services/api/refrigeratorProductApi";
+import { useDeleteRefrigeratorProduct } from "@/services/query/useRefrigeratorProduct";
 
 function Row({ label, value }: { label: string; value: string | number }) {
   return (
@@ -13,6 +14,15 @@ function Row({ label, value }: { label: string; value: string | number }) {
 }
 
 export function IngredientCard({ product }: { product: RefrigeratorProduct }) {
+  const deleteRefrigeratorProduct = useDeleteRefrigeratorProduct();
+
+  const handleDeleteRefrigeratorProduct = (productId: number) => {
+    deleteRefrigeratorProduct
+      .mutateAsync(productId)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <article className="flex gap-4 rounded-3xl bg-card p-4 shadow-sm ring-1 ring-border">
       {/* 이미지 임시 미노출 처리 */}
@@ -25,11 +35,18 @@ export function IngredientCard({ product }: { product: RefrigeratorProduct }) {
           className="object-cover"
         />
       </div> */}
-
       <div className="flex flex-1 flex-col">
-        <h3 className="text-xl font-extrabold text-foreground">
-          {product.name}
-        </h3>
+        <div className="flex justify-between">
+          <h3 className="text-xl font-extrabold text-foreground">
+            {product.name}
+          </h3>
+          <button
+            className="bg-amber-500 rounded-lg w-12 p-1 text-white font-bold"
+            onClick={() => handleDeleteRefrigeratorProduct(product.id)}
+          >
+            삭제
+          </button>
+        </div>
         <div className="my-2 border-b border-border" />
         <div className="flex flex-col gap-2">
           <Row label="수량" value={product.quantity} />
