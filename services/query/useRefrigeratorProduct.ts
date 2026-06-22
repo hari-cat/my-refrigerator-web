@@ -1,9 +1,27 @@
-import { useQuery } from "@tanstack/react-query";
-import { getRefrigerator } from "../api/refrigeratorProductApi";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  createRefrigeratorProduct,
+  getRefrigeratorProducts,
+  RefreigeratorRequest,
+} from "../api/refrigeratorProductApi";
 
-export const useGetRefrigerator = (param: number) => {
+export const useGetRefrigeratorProducts = (param: RefreigeratorRequest) => {
   return useQuery({
     queryKey: ["getRefrigeratorProducts"],
-    queryFn: () => getRefrigerator(param),
+    queryFn: () => getRefrigeratorProducts(param),
+  });
+};
+
+export const useCreateRefrigeratorProduct = () => {
+  return useMutation({
+    mutationFn: createRefrigeratorProduct,
+
+    onSuccess: (data) => {
+      console.log("등록 성공", data);
+    },
+
+    onError: (error) => {
+      console.error("등록 실패", error);
+    },
   });
 };
