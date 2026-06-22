@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CATEGORIES, INGREDIENTS, type Category } from "@/lib/ingredients";
+import { CATEGORIES } from "@/lib/ingredients";
 import { IngredientCard } from "@/components/refrigerator/ingredient-card";
 import { cn } from "@/lib/utils";
 import { RefrigeratorProduct } from "@/services/api/refrigeratorProductApi";
@@ -11,25 +11,23 @@ export function IngredientList({
 }: {
   products: RefrigeratorProduct[];
 }) {
-  const [active, setActive] = useState<Category>("전체");
+  const [active, setActive] = useState<string>("ALL");
 
-  const filtered =
-    active === "전체"
-      ? INGREDIENTS
-      : INGREDIENTS.filter((item) => item.category === active);
-
-  console.log(products);
+  const filteredProduct = products.filter((i) => {
+    if (active === "ALL") return i;
+    else return i.category === active;
+  });
 
   return (
     <div className="mx-auto w-full max-w-md px-5 pb-16">
       <div className="flex flex-wrap gap-3 py-8">
         {CATEGORIES.map((category) => {
-          const isActive = category === active;
+          const isActive = category.id === active;
           return (
             <button
-              key={category}
+              key={category.id}
               type="button"
-              onClick={() => setActive(category)}
+              onClick={() => setActive(category.id)}
               aria-pressed={isActive}
               className={cn(
                 "rounded-full px-6 py-2.5 text-base font-bold shadow-sm transition-colors",
@@ -38,15 +36,15 @@ export function IngredientList({
                   : "bg-card text-foreground ring-1 ring-border hover:bg-secondary",
               )}
             >
-              {category}
+              {category.name}
             </button>
           );
         })}
       </div>
 
       <div className="flex flex-col gap-5">
-        {products.length > 0 ? (
-          products.map((product) => (
+        {filteredProduct.length > 0 ? (
+          filteredProduct.map((product) => (
             <IngredientCard key={product.id} product={product} />
           ))
         ) : (

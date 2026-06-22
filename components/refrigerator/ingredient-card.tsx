@@ -1,6 +1,5 @@
 "use client";
 import { RefrigeratorProduct } from "@/services/api/refrigeratorProductApi";
-import Image from "next/image";
 
 function Row({ label, value }: { label: string; value: string | number }) {
   return (
@@ -16,7 +15,8 @@ function Row({ label, value }: { label: string; value: string | number }) {
 export function IngredientCard({ product }: { product: RefrigeratorProduct }) {
   return (
     <article className="flex gap-4 rounded-3xl bg-card p-4 shadow-sm ring-1 ring-border">
-      <div className="relative size-28 shrink-0 overflow-hidden rounded-2xl">
+      {/* 이미지 임시 미노출 처리 */}
+      {/* <div className="relative size-28 shrink-0 overflow-hidden rounded-2xl">
         <Image
           src={""}
           alt={product.name}
@@ -24,7 +24,7 @@ export function IngredientCard({ product }: { product: RefrigeratorProduct }) {
           sizes="112px"
           className="object-cover"
         />
-      </div>
+      </div> */}
 
       <div className="flex flex-1 flex-col">
         <h3 className="text-xl font-extrabold text-foreground">
