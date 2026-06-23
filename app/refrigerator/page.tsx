@@ -6,6 +6,7 @@ import { IngredientList } from "@/components/refrigerator/ingredient-list";
 import {
   useCreateRefrigeratorProduct,
   useGetRefrigeratorProducts,
+  useRetrieveRefrigeratorStatistics,
 } from "@/services/query/useRefrigeratorProduct";
 import {
   CreateProductRequest,
@@ -81,7 +82,9 @@ export default function DashboardPage() {
       });
   };
 
-  console.log(creatProduct);
+  const { data: staticsRefrigeratorResponse } =
+    useRetrieveRefrigeratorStatistics();
+
   return (
     <main className="min-h-screen bg-background">
       <header className="flex items-center justify-between bg-card px-6 py-5">
@@ -94,7 +97,7 @@ export default function DashboardPage() {
           <HomeIcon className="size-7" />
         </Link>
       </header>
-      <FreshnessHeader />
+      <FreshnessHeader data={staticsRefrigeratorResponse} />
       <button
         key={"add-refrigerator-product"}
         type="button"

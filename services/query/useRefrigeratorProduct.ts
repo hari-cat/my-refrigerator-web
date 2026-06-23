@@ -4,6 +4,7 @@ import {
   deleteRefrigeratorProduct,
   getRefrigeratorProducts,
   RefreigeratorRequest,
+  retrieveRefrigeratorStatistics,
 } from "../api/refrigeratorProductApi";
 
 export const useGetRefrigeratorProducts = (param: RefreigeratorRequest) => {
@@ -40,5 +41,12 @@ export const useDeleteRefrigeratorProduct = () => {
     onError: (error) => {
       console.error("삭제 실패", error);
     },
+  });
+};
+
+export const useRetrieveRefrigeratorStatistics = () => {
+  return useQuery({
+    queryKey: ["retrieveRefrigeratorStatistics"],
+    queryFn: retrieveRefrigeratorStatistics,
   });
 };

@@ -54,3 +54,17 @@ export const deleteRefrigeratorProduct = async (productId: number) => {
 
   return response.data;
 };
+export interface StaticsRefrigeratorResponse {
+  refrigeratorScore: number;
+  expiringProductCount: number;
+  expiredProductCount: number;
+}
+/**
+ * 냉장고 통계
+ */
+export const retrieveRefrigeratorStatistics =
+  async (): Promise<StaticsRefrigeratorResponse> => {
+    const response = await api.get(`/api/refrigerator-product/statics`);
+
+    return response.data;
+  };

@@ -1,12 +1,21 @@
+"use client";
 import { FRESHNESS } from "@/lib/ingredients";
+import { StaticsRefrigeratorResponse } from "@/services/api/refrigeratorProductApi";
 
-const STATS = [
-  { value: FRESHNESS.expiringSoon, unit: "개", label: "유통기한 임박" },
-  { value: FRESHNESS.discardThisWeek, unit: "개", label: "이번 주 폐기 예상" },
-  { value: FRESHNESS.daysSinceUpdate, unit: "일", label: "최근 업데이트" },
-];
-
-export function FreshnessHeader() {
+export function FreshnessHeader({
+  data,
+}: {
+  data?: StaticsRefrigeratorResponse;
+}) {
+  const STATS = [
+    { value: data?.expiringProductCount, unit: "개", label: "유통기한 임박" },
+    {
+      value: data?.expiredProductCount,
+      unit: "개",
+      label: "이번 주 폐기 예상",
+    },
+    { value: "", unit: "일", label: "채소" },
+  ];
   return (
     <section className="bg-gradient-to-b from-fridge-from to-fridge-to px-6 pb-10 pt-10 text-card">
       <div className="mx-auto max-w-md text-center">
@@ -22,7 +31,7 @@ export function FreshnessHeader() {
 
         <div className="mt-10 flex items-end justify-center">
           <span className="text-8xl font-black leading-none tracking-tighter">
-            {FRESHNESS.score}
+            {data?.refrigeratorScore}
           </span>
           <span className="mb-3 ml-2 text-2xl font-bold">점</span>
         </div>
